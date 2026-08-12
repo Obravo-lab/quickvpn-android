@@ -1,0 +1,19 @@
+# Gradle
+.gradle/
+build/
+*/build/
+
+# Local
+local.properties
+*.iml
+.idea/
+.DS_Store
+
+# Signing — JAMAIS de keystore dans le repo
+*.jks
+*.keystore
+keystore.properties
+
+# Secrets
+*.p12
+service_account*.json

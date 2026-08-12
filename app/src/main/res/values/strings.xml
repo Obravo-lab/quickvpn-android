@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuickVPN</string>
+
+    <string name="onboarding_title">VPN hors Europe.</string>
+    <string name="onboarding_subtitle">50 Mbps garantis. Sans logs.</string>
+    <string name="onboarding_lead">Protégez votre identité numérique hors Europe. IP hors UE : évitez les demandes de pièce d\'identité liées à une IP européenne.</string>
+    <string name="onboarding_cta">Créer mon compte</string>
+    <string name="onboarding_login">J\'ai déjà un compte — Connexion</string>
+
+    <string name="feature_speed_title">50 Mbps garantis</string>
+    <string name="feature_speed_desc">Débit garanti 50 Mbps en download et 20 Mbps en upload. Réel et stable.</string>
+    <string name="feature_nologs_title">Zéro log d\'activité</string>
+    <string name="feature_nologs_desc">Pas de logs de navigation, de sites visités ni d\'horodatage détaillé de votre trafic.</string>
+    <string name="feature_canada_title">Identité hors Europe</string>
+    <string name="feature_canada_desc">IP de sortie au Canada, loin des vérifications d\'âge liées à une IP européenne.</string>
+    <string name="feature_wireguard_title">WireGuard pur</string>
+    <string name="feature_wireguard_desc">Protocole moderne, léger et performant. Config standard compatible partout.</string>
+
+    <string name="login_title">Connexion</string>
+    <string name="login_email">Adresse email</string>
+    <string name="login_password">Mot de passe</string>
+    <string name="login_submit">Se connecter</string>
+    <string name="login_forgot">Mot de passe oublié ?</string>
+    <string name="login_no_account">Pas encore de compte ?</string>
+    <string name="login_signup">S\'inscrire</string>
+
+    <string name="register_title">Créer mon compte</string>
+    <string name="register_name">Nom</string>
+    <string name="register_email">Adresse email</string>
+    <string name="register_password">Mot de passe</string>
+    <string name="register_confirm">Confirmer le mot de passe</string>
+    <string name="register_submit">Créer mon compte</string>
+    <string name="register_has_account">Déjà un compte ?</string>
+    <string name="register_login">Connexion</string>
+    <string name="register_check_email">Vérifiez votre boîte mail pour confirmer votre adresse avant de vous connecter.</string>
+
+    <string name="dashboard_title">Dashboard</string>
+    <string name="dashboard_greeting">Bonjour %1$s</string>
+    <string name="dashboard_subscription">Abonnement</string>
+    <string name="dashboard_sub_active">Actif</string>
+    <string name="dashboard_sub_inactive">Inactif</string>
+    <string name="dashboard_expires">Expire le %1$s</string>
+    <string name="dashboard_speed">50 Mbps</string>
+    <string name="dashboard_traffic">Illimité</string>
+    <string name="dashboard_protocol">WireGuard</string>
+    <string name="dashboard_config_title">Configuration VPN</string>
+    <string name="dashboard_config_none">Aucune configuration générée. Abonnez-vous pour accéder au VPN.</string>
+    <string name="dashboard_vpn_ip">IP VPN</string>
+    <string name="dashboard_logout">Déconnexion</string>
+    <string name="dashboard_pending">Connexion en cours…</string>
+
+    <string name="error_network">Erreur réseau. Vérifiez votre connexion.</string>
+    <string name="error_generic">Une erreur est survenue.</string>
+    <string name="dashboard_retry">Réessayer</string>
+</resources>
