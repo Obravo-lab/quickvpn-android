@@ -1,6 +1,8 @@
 package fr.quickvpn.android.ui.screens.home
 
 import android.content.Context
+import android.content.Intent
+import android.net.VpnService
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.quickvpn.android.core.network.ApiClient
@@ -21,6 +23,7 @@ data class HomeUiState(
     val stats: VpnStats = VpnStats(),
     val configReady: Boolean = false,
     val error: String? = null,
+    val info: String? = null,
     val loggedOut: Boolean = false
 )
 
@@ -32,6 +35,9 @@ class HomeVpnViewModel(
 
     private val _ui = MutableStateFlow(HomeUiState())
     val ui: StateFlow<HomeUiState> = _ui
+
+    private val _pendingConsent = MutableStateFlow<Intent?>(null)
+    val pendingConsent: StateFlow<Intent?> = _pendingConsent
 
     init {
         VpnManager.bind(appContext)
@@ -76,22 +82,67 @@ class HomeVpnViewModel(
             _ui.update { it.copy(configReady = true) }
             return
         }
-        try {
-            val resp = api.service.config()
-            if (resp.ok && resp.data != null) {
-                tokenStore.wgConfig = resp.data.config
-                _ui.update { it.copy(configReady = true) }
-            }
-        } catch (_: Exception) {
+        val configText = fetchConfig()
+        if (configText != null) {
+            tokenStore.wgConfig = configText
+            _ui.update { it.copy(configReady = true) }
         }
     }
 
-    fun connect() {
-        val config = tokenStore.wgConfig
-        if (config.isNullOrBlank()) {
-            refresh()
+    private suspend fun fetchConfig(): String? {
+        try {
+            val resp = api.service.config()
+            if (resp.ok && resp.data != null) return resp.data.config
+        } catch (_: Exception) {
+        }
+        try {
+            val resp = api.service.configGenerate()
+            if (resp.ok && resp.data != null) return resp.data.config
+        } catch (_: Exception) {
+        }
+        return null
+    }
+
+    fun prepareConnect() {
+        val existing = tokenStore.wgConfig
+        if (existing.isNullOrBlank()) {
+            viewModelScope.launch {
+                val config = fetchConfig()
+                if (config != null) {
+                    tokenStore.wgConfig = config
+                    _ui.update { it.copy(configReady = true) }
+                    requestConsentOrConnect()
+                } else {
+                    _ui.update { it.copy(error = "vpn_no_config") }
+                }
+            }
             return
         }
+        requestConsentOrConnect()
+    }
+
+    private fun requestConsentOrConnect() {
+        val consent = VpnService.prepare(appContext)
+        if (consent != null) {
+            _ui.update { it.copy(info = "vpn_authorize") }
+            _pendingConsent.value = consent
+        } else {
+            _ui.update { it.copy(info = null) }
+            connect()
+        }
+    }
+
+    fun clearPendingConsent() {
+        _pendingConsent.value = null
+    }
+
+    fun connect() {
+        val config = tokenStore.wgConfig ?: return
+        doConnect(config)
+    }
+
+    private fun doConnect(config: String) {
+        _ui.update { it.copy(info = null) }
         VpnManager.connect(appContext, config)
     }
 

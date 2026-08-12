@@ -63,4 +63,6 @@
     <string name="home_rx">Received</string>
     <string name="home_tx">Sent</string>
     <string name="home_no_config">Subscribe to access the VPN. The configuration will be generated automatically.</string>
+    <string name="home_error_no_config">Unable to generate the configuration. Check your subscription and try again.</string>
+    <string name="home_vpn_authorize">Authorize the VPN in the window that just opened, then press CONNECT again.</string>
 </resources>

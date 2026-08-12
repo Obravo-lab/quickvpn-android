@@ -35,6 +35,12 @@ interface ApiService {
     ): ApiEnvelope<ConfigData>
 
     @POST("api/v1/index.php")
+    suspend fun configGenerate(
+        @Query("action") action: String = "config/generate",
+        @Body body: Any = EmptyBody
+    ): ApiEnvelope<ConfigData>
+
+    @POST("api/v1/index.php")
     suspend fun logout(
         @Query("action") action: String = "auth/logout",
         @Body body: Any = EmptyBody

@@ -1,6 +1,13 @@
 package fr.quickvpn.android.ui.screens.home
 
+import android.Manifest
+import android.app.Activity
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,14 +29,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.quickvpn.android.R
 import fr.quickvpn.android.ui.navigation.viewModelFactory
@@ -71,10 +81,43 @@ fun HomeVpnScreen(
 
         Spacer(Modifier.height(40.dp))
 
+        val context = LocalContext.current
+        val notifPermissionLauncher = rememberLauncherForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) {}
+        val vpnConsentLauncher = rememberLauncherForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                vm.connect()
+            }
+        }
+        val pendingConsent by vm.pendingConsent.collectAsState()
+        LaunchedEffect(pendingConsent) {
+            pendingConsent?.let {
+                vpnConsentLauncher.launch(it)
+                vm.clearPendingConsent()
+            }
+        }
+
         PowerButton(
             isUp = state.vpnUp,
             loading = state.loading,
-            onClick = { if (state.vpnUp) vm.disconnect() else vm.connect() }
+            onClick = {
+                if (state.vpnUp) {
+                    vm.disconnect()
+                } else {
+                    if (Build.VERSION.SDK_INT >= 33 &&
+                        ContextCompat.checkSelfPermission(
+                            context,
+                            Manifest.permission.POST_NOTIFICATIONS
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        notifPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    }
+                    vm.prepareConnect()
+                }
+            }
         )
 
         Spacer(Modifier.height(24.dp))
@@ -95,6 +138,19 @@ fun HomeVpnScreen(
             Text(
                 text = it,
                 color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
+
+        state.info?.let {
+            Spacer(Modifier.height(12.dp))
+            Text(
+                text = if (it == "vpn_authorize") {
+                    stringResource(R.string.home_vpn_authorize)
+                } else {
+                    it
+                },
+                color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.bodyMedium
             )
         }
@@ -149,7 +205,11 @@ fun HomeVpnScreen(
         state.error?.let {
             Spacer(Modifier.height(12.dp))
             Text(
-                text = if (it == "network") stringResource(R.string.error_network) else it,
+                text = when (it) {
+                    "network" -> stringResource(R.string.error_network)
+                    "vpn_no_config" -> stringResource(R.string.home_error_no_config)
+                    else -> it
+                },
                 color = MaterialTheme.colorScheme.error
             )
             Spacer(Modifier.height(8.dp))
@@ -171,7 +231,8 @@ private fun PowerButton(isUp: Boolean, loading: Boolean, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .size(150.dp)
-            .background(bg, CircleShape),
+            .background(bg, CircleShape)
+            .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ) {
         if (loading) {
@@ -186,16 +247,11 @@ private fun PowerButton(isUp: Boolean, loading: Boolean, onClick: () -> Unit) {
         }
         Box(
             modifier = Modifier
-                .size(150.dp)
+                .matchParentSize()
                 .padding(10.dp)
                 .background(Color.Black.copy(alpha = 0.05f), CircleShape)
         )
     }
-    Box(
-        modifier = Modifier
-            .padding(top = 2.dp)
-            .size(1.dp)
-    )
 }
 
 @Composable
