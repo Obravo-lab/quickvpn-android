@@ -59,6 +59,11 @@ data class MeData(
     @SerializedName("user") val user: User
 )
 
+data class ConfigData(
+    @SerializedName("config") val config: String,
+    @SerializedName("filename") val filename: String
+)
+
 data class LoginRequest(
     @SerializedName("email") val email: String,
     @SerializedName("password") val password: String

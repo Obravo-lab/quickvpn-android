@@ -9,21 +9,21 @@ import androidx.navigation.compose.rememberNavController
 import fr.quickvpn.android.AppGraph
 import fr.quickvpn.android.ui.screens.auth.LoginScreen
 import fr.quickvpn.android.ui.screens.auth.RegisterScreen
-import fr.quickvpn.android.ui.screens.dashboard.DashboardScreen
+import fr.quickvpn.android.ui.screens.home.HomeVpnScreen
 import fr.quickvpn.android.ui.screens.onboarding.OnboardingScreen
 
 object Routes {
     const val ONBOARDING = "onboarding"
     const val LOGIN = "login"
     const val REGISTER = "register"
-    const val DASHBOARD = "dashboard"
+    const val HOME = "home"
 }
 
 @Composable
 fun AppNavHost() {
     val navController: NavHostController = rememberNavController()
     val tokenStore = AppGraph.ApiClient.current.tokenStore
-    val start = if (tokenStore.token != null) Routes.DASHBOARD else Routes.ONBOARDING
+    val start = if (tokenStore.token != null) Routes.HOME else Routes.ONBOARDING
 
     NavHost(navController = navController, startDestination = start) {
         composable(Routes.ONBOARDING) {
@@ -35,7 +35,7 @@ fun AppNavHost() {
         composable(Routes.LOGIN) {
             LoginScreen(
                 onLoggedIn = {
-                    navController.navigate(Routes.DASHBOARD) {
+                    navController.navigate(Routes.HOME) {
                         popUpTo(Routes.ONBOARDING) { inclusive = true }
                     }
                 },
@@ -48,11 +48,11 @@ fun AppNavHost() {
                 onGoLogin = { navController.popBackStack() }
             )
         }
-        composable(Routes.DASHBOARD) {
-            DashboardScreen(
+        composable(Routes.HOME) {
+            HomeVpnScreen(
                 onLoggedOut = {
                     navController.navigate(Routes.ONBOARDING) {
-                        popUpTo(Routes.DASHBOARD) { inclusive = true }
+                        popUpTo(Routes.HOME) { inclusive = true }
                     }
                 }
             )

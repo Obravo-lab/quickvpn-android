@@ -34,6 +34,13 @@ class TokenStore(context: Context) {
             else prefs.edit().putString(KEY_EMAIL, value).apply()
         }
 
+    var wgConfig: String?
+        get() = prefs.getString(KEY_CONFIG, null)
+        set(value) {
+            if (value == null) prefs.edit().remove(KEY_CONFIG).apply()
+            else prefs.edit().putString(KEY_CONFIG, value).apply()
+        }
+
     fun clear() {
         prefs.edit().clear().apply()
     }
@@ -41,5 +48,6 @@ class TokenStore(context: Context) {
     private companion object {
         const val KEY_TOKEN = "api_token"
         const val KEY_EMAIL = "user_email"
+        const val KEY_CONFIG = "wg_config"
     }
 }

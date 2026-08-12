@@ -53,4 +53,14 @@
     <string name="error_network">Erreur réseau. Vérifiez votre connexion.</string>
     <string name="error_generic">Une erreur est survenue.</string>
     <string name="dashboard_retry">Réessayer</string>
+
+    <string name="home_greeting">Bonjour %1$s</string>
+    <string name="home_connect">CONNECTER</string>
+    <string name="home_disconnect">ARRÊTER</string>
+    <string name="home_connected">Connecté</string>
+    <string name="home_disconnected">Déconnecté</string>
+    <string name="home_server">Serveur : Canada</string>
+    <string name="home_rx">Reçu</string>
+    <string name="home_tx">Envoyé</string>
+    <string name="home_no_config">Abonnez-vous pour accéder au VPN. La configuration sera générée automatiquement.</string>
 </resources>

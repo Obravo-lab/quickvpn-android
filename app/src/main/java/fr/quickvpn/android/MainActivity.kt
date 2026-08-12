@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.quickvpn.android.core.network.ApiClient
 import fr.quickvpn.android.ui.navigation.AppNavHost
+import fr.quickvpn.android.ui.navigation.LocalApplication
 import fr.quickvpn.android.ui.theme.QuickVpnTheme
 
 object AppGraph {
@@ -25,9 +25,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             QuickVpnTheme {
-                val app = application as QuickVpnApp
+                val app = application as fr.quickvpn.android.QuickVpnApp
                 val apiClient = remember { ApiClient(app.tokenStore) }
-                CompositionLocalProvider(AppGraph.ApiClient provides apiClient) {
+                CompositionLocalProvider(
+                    AppGraph.ApiClient provides apiClient,
+                    LocalApplication provides app
+                ) {
                     AppNavHost()
                 }
             }

@@ -53,4 +53,14 @@
     <string name="error_network">Network error. Check your connection.</string>
     <string name="error_generic">Something went wrong.</string>
     <string name="dashboard_retry">Retry</string>
+
+    <string name="home_greeting">Hello %1$s</string>
+    <string name="home_connect">CONNECT</string>
+    <string name="home_disconnect">STOP</string>
+    <string name="home_connected">Connected</string>
+    <string name="home_disconnected">Disconnected</string>
+    <string name="home_server">Server: Canada</string>
+    <string name="home_rx">Received</string>
+    <string name="home_tx">Sent</string>
+    <string name="home_no_config">Subscribe to access the VPN. The configuration will be generated automatically.</string>
 </resources>

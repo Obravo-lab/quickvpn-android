@@ -29,6 +29,11 @@ interface ApiService {
         @Query("action") action: String = "me"
     ): ApiEnvelope<MeData>
 
+    @GET("api/v1/index.php")
+    suspend fun config(
+        @Query("action") action: String = "config"
+    ): ApiEnvelope<ConfigData>
+
     @POST("api/v1/index.php")
     suspend fun logout(
         @Query("action") action: String = "auth/logout",
