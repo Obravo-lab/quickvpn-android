@@ -64,6 +64,12 @@ data class ConfigData(
     @SerializedName("filename") val filename: String
 )
 
+data class PlayVerifyData(
+    @SerializedName("user") val user: User?,
+    @SerializedName("plan") val plan: String?,
+    @SerializedName("ends_on") val endsOn: String?
+)
+
 data class LoginRequest(
     @SerializedName("email") val email: String,
     @SerializedName("password") val password: String
@@ -74,4 +80,8 @@ data class RegisterRequest(
     @SerializedName("email") val email: String,
     @SerializedName("password") val password: String,
     @SerializedName("confirm") val confirm: String
+)
+
+data class PlayVerifyRequest(
+    @SerializedName("purchase_token") val purchaseToken: String
 )

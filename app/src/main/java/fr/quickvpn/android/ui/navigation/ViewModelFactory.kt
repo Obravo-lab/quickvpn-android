@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import fr.quickvpn.android.AppGraph
 import fr.quickvpn.android.ui.screens.auth.AuthViewModel
 import fr.quickvpn.android.ui.screens.home.HomeVpnViewModel
+import fr.quickvpn.android.ui.screens.plans.PlansViewModel
 
 val LocalApplication = staticCompositionLocalOf<Application> {
     error("Application non fournie")
@@ -25,6 +26,8 @@ inline fun <reified VM : ViewModel> viewModelFactory(): ViewModelProvider.Factor
                     AuthViewModel(api, api.tokenStore) as T
                 VM::class == HomeVpnViewModel::class ->
                     HomeVpnViewModel(api, api.tokenStore, app) as T
+                VM::class == PlansViewModel::class ->
+                    PlansViewModel(api, api.tokenStore, app) as T
                 else -> error("ViewModel inconnu: ${modelClass.name}")
             }
         }

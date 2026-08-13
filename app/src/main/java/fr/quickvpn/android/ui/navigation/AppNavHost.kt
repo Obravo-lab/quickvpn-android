@@ -11,12 +11,14 @@ import fr.quickvpn.android.ui.screens.auth.LoginScreen
 import fr.quickvpn.android.ui.screens.auth.RegisterScreen
 import fr.quickvpn.android.ui.screens.home.HomeVpnScreen
 import fr.quickvpn.android.ui.screens.onboarding.OnboardingScreen
+import fr.quickvpn.android.ui.screens.plans.PlansScreen
 
 object Routes {
     const val ONBOARDING = "onboarding"
     const val LOGIN = "login"
     const val REGISTER = "register"
     const val HOME = "home"
+    const val PLANS = "plans"
 }
 
 @Composable
@@ -54,7 +56,13 @@ fun AppNavHost() {
                     navController.navigate(Routes.ONBOARDING) {
                         popUpTo(Routes.HOME) { inclusive = true }
                     }
-                }
+                },
+                onGoPlans = { navController.navigate(Routes.PLANS) }
+            )
+        }
+        composable(Routes.PLANS) {
+            PlansScreen(
+                onBack = { navController.popBackStack() }
             )
         }
     }

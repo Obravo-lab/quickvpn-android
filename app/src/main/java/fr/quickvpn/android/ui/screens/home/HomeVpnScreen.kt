@@ -48,6 +48,7 @@ import java.util.Locale
 @Composable
 fun HomeVpnScreen(
     onLoggedOut: () -> Unit,
+    onGoPlans: () -> Unit,
     vm: HomeVpnViewModel = viewModel<HomeVpnViewModel>(factory = viewModelFactory<HomeVpnViewModel>())
 ) {
     val state by vm.ui.collectAsState()
@@ -193,12 +194,20 @@ fun HomeVpnScreen(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
             ) {
-                Text(
-                    text = stringResource(R.string.home_no_config),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(16.dp)
-                )
+                Column(Modifier.padding(16.dp)) {
+                    Text(
+                        text = stringResource(R.string.home_no_config),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(Modifier.height(12.dp))
+                    Button(
+                        onClick = onGoPlans,
+                        modifier = Modifier.fillMaxWidth().height(44.dp)
+                    ) {
+                        Text(stringResource(R.string.home_subscribe))
+                    }
+                }
             }
         }
 

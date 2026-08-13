@@ -55,5 +55,6 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.androidx.security.crypto)
     implementation(libs.wireguard.tunnel)
+    implementation(libs.androidx.billing)
     debugImplementation(libs.androidx.compose.ui.tooling)
 }

@@ -63,6 +63,18 @@
     <string name="home_rx">Reçu</string>
     <string name="home_tx">Envoyé</string>
     <string name="home_no_config">Abonnez-vous pour accéder au VPN. La configuration sera générée automatiquement.</string>
+    <string name="home_subscribe">S\'abonner</string>
     <string name="home_error_no_config">Impossible de générer la configuration. Vérifiez votre abonnement puis réessayez.</string>
     <string name="home_vpn_authorize">Autorisez le VPN dans la fenêtre qui vient de s\'ouvrir, puis appuyez à nouveau sur CONNECTER.</string>
+
+    <string name="plans_title">Tarifs</string>
+    <string name="plans_subtitle">50 Mbps garantis, sans logs, trafic illimité. Paiement sécurisé Google Play.</string>
+    <string name="plans_monthly">Mensuel</string>
+    <string name="plans_yearly">Annuel</string>
+    <string name="plans_best_value">Meilleure offre</string>
+    <string name="plans_promo">Promo {percent} % appliquée</string>
+    <string name="plans_subscribe">S\'abonner</string>
+    <string name="plans_subscribed">Abonnement activé ! Votre accès VPN est maintenant disponible.</string>
+    <string name="plans_verify">Vérification de votre paiement…</string>
+    <string name="plans_back">Retour</string>
 </resources>

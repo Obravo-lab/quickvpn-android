@@ -46,5 +46,11 @@ interface ApiService {
         @Body body: Any = EmptyBody
     ): ApiEnvelope<Any>
 
+    @POST("api/v1/index.php")
+    suspend fun playVerify(
+        @Query("action") action: String = "play/verify",
+        @Body body: PlayVerifyRequest
+    ): ApiEnvelope<PlayVerifyData>
+
     object EmptyBody
 }
