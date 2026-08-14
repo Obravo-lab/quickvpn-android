@@ -22,6 +22,7 @@ data class PlansUiState(
     val yearly: Plan? = null,
     val promo: PromoInfo? = null,
     val productsReady: Boolean = false,
+    val availablePlans: Set<String> = emptySet(),
     val verifying: Boolean = false,
     val subscribed: Boolean = false,
     val error: String? = null
@@ -43,7 +44,13 @@ class PlansViewModel(
         fetchPlans()
         viewModelScope.launch {
             BillingManager.state.collect { bs ->
-                _ui.update { it.copy(productsReady = bs.ready, error = bs.error ?: it.error) }
+                _ui.update {
+                    it.copy(
+                        productsReady = bs.ready,
+                        availablePlans = bs.products.map { p -> p.productId }.toSet(),
+                        error = bs.error ?: it.error
+                    )
+                }
                 bs.purchased?.let { purchase ->
                     if (handledTokens.add(purchase.purchaseToken)) {
                         verifyPurchase(purchase)

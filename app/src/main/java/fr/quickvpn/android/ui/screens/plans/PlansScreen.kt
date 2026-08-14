@@ -106,7 +106,7 @@ fun PlansScreen(
                 },
                 featured = false,
                 onSubscribe = { if (activity != null) vm.buy("monthly", activity) },
-                enabled = state.productsReady && !state.loading
+                enabled = state.availablePlans.contains("monthly") && !state.loading
             )
             Spacer(Modifier.height(16.dp))
         }
@@ -120,7 +120,7 @@ fun PlansScreen(
                 },
                 featured = true,
                 onSubscribe = { if (activity != null) vm.buy("yearly", activity) },
-                enabled = state.productsReady && !state.loading
+                enabled = state.availablePlans.contains("yearly") && !state.loading
             )
         }
 
