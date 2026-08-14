@@ -72,7 +72,7 @@
     <string name="plans_monthly">Mensuel</string>
     <string name="plans_yearly">Annuel</string>
     <string name="plans_best_value">Meilleure offre</string>
-    <string name="plans_promo">Promo {percent} % appliquée</string>
+    <string name="plans_promo">Promo %1$d %% appliquée</string>
     <string name="plans_subscribe">S\'abonner</string>
     <string name="plans_subscribed">Abonnement activé ! Votre accès VPN est maintenant disponible.</string>
     <string name="plans_verify">Vérification de votre paiement…</string>
