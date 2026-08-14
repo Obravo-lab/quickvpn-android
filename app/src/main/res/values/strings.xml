@@ -77,4 +77,33 @@
     <string name="plans_subscribed">Abonnement activé ! Votre accès VPN est maintenant disponible.</string>
     <string name="plans_verify">Vérification de votre paiement…</string>
     <string name="plans_back">Retour</string>
+
+    <string name="home_account">Mon compte</string>
+
+    <string name="account_title">Mon compte</string>
+    <string name="account_section_password">Changer le mot de passe</string>
+    <string name="account_password_current">Mot de passe actuel</string>
+    <string name="account_password_new">Nouveau mot de passe</string>
+    <string name="account_password_confirm">Confirmer le nouveau mot de passe</string>
+    <string name="account_password_submit">Changer le mot de passe</string>
+    <string name="account_password_success">Mot de passe modifié.</string>
+    <string name="account_pw_mismatch">Les mots de passe ne correspondent pas.</string>
+    <string name="account_pw_short">Le mot de passe doit contenir au moins 8 caractères.</string>
+    <string name="account_section_subscription">Abonnement</string>
+    <string name="account_sub_active">Actif</string>
+    <string name="account_sub_inactive">Inactif</string>
+    <string name="account_sub_end">Expire le %1$s</string>
+    <string name="account_cancel">Résilier l\'abonnement</string>
+    <string name="account_cancel_confirm_title">Résilier l\'abonnement ?</string>
+    <string name="account_cancel_confirm_msg">Votre accès restera actif jusqu\'à la fin de la période payée.</string>
+    <string name="account_cancel_confirm_btn">Résilier</string>
+    <string name="account_cancel_info">Abonnement résilié. Accès conservé jusqu\'à la fin de la période.</string>
+    <string name="account_section_delete">Supprimer le compte</string>
+    <string name="account_delete_desc">Suppression définitive : compte, clés VPN et données. Action irréversible.</string>
+    <string name="account_delete_btn">Supprimer mon compte</string>
+    <string name="account_delete_dialog_title">Confirmer la suppression</string>
+    <string name="account_delete_dialog_msg">Entrez votre mot de passe et tapez %1$s pour confirmer.</string>
+    <string name="account_delete_word">SUPPRIMER</string>
+    <string name="account_delete_word_hint">Tapez %1$s</string>
+    <string name="account_delete_submit">Supprimer définitivement</string>
 </resources>

@@ -85,3 +85,23 @@ data class RegisterRequest(
 data class PlayVerifyRequest(
     @SerializedName("purchase_token") val purchaseToken: String
 )
+
+data class ChangePasswordRequest(
+    @SerializedName("current_password") val currentPassword: String,
+    @SerializedName("new_password") val newPassword: String,
+    @SerializedName("confirm_password") val confirmPassword: String
+)
+
+data class DeleteAccountRequest(
+    @SerializedName("password") val password: String,
+    @SerializedName("confirm") val confirm: String
+)
+
+data class CancelData(
+    @SerializedName("user") val user: User?,
+    @SerializedName("ends_on") val endsOn: String?
+)
+
+data class ApiMessage(
+    @SerializedName("message") val message: String?
+)

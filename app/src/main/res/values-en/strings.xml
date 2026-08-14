@@ -77,4 +77,33 @@
     <string name="plans_subscribed">Subscription activated! Your VPN access is now available.</string>
     <string name="plans_verify">Verifying your payment…</string>
     <string name="plans_back">Back</string>
+
+    <string name="home_account">My account</string>
+
+    <string name="account_title">My account</string>
+    <string name="account_section_password">Change password</string>
+    <string name="account_password_current">Current password</string>
+    <string name="account_password_new">New password</string>
+    <string name="account_password_confirm">Confirm new password</string>
+    <string name="account_password_submit">Change password</string>
+    <string name="account_password_success">Password changed.</string>
+    <string name="account_pw_mismatch">Passwords do not match.</string>
+    <string name="account_pw_short">Password must be at least 8 characters.</string>
+    <string name="account_section_subscription">Subscription</string>
+    <string name="account_sub_active">Active</string>
+    <string name="account_sub_inactive">Inactive</string>
+    <string name="account_sub_end">Expires on %1$s</string>
+    <string name="account_cancel">Cancel subscription</string>
+    <string name="account_cancel_confirm_title">Cancel subscription?</string>
+    <string name="account_cancel_confirm_msg">Your access stays active until the end of the paid period.</string>
+    <string name="account_cancel_confirm_btn">Cancel</string>
+    <string name="account_cancel_info">Subscription cancelled. Access kept until the end of the period.</string>
+    <string name="account_section_delete">Delete account</string>
+    <string name="account_delete_desc">Permanent deletion: account, VPN keys and data. This cannot be undone.</string>
+    <string name="account_delete_btn">Delete my account</string>
+    <string name="account_delete_dialog_title">Confirm deletion</string>
+    <string name="account_delete_dialog_msg">Enter your password and type %1$s to confirm.</string>
+    <string name="account_delete_word">DELETE</string>
+    <string name="account_delete_word_hint">Type %1$s</string>
+    <string name="account_delete_submit">Delete permanently</string>
 </resources>

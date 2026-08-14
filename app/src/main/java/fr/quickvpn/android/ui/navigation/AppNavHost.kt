@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import fr.quickvpn.android.AppGraph
+import fr.quickvpn.android.ui.screens.account.AccountScreen
 import fr.quickvpn.android.ui.screens.auth.LoginScreen
 import fr.quickvpn.android.ui.screens.auth.RegisterScreen
 import fr.quickvpn.android.ui.screens.home.HomeVpnScreen
@@ -19,6 +20,7 @@ object Routes {
     const val REGISTER = "register"
     const val HOME = "home"
     const val PLANS = "plans"
+    const val ACCOUNT = "account"
 }
 
 @Composable
@@ -57,12 +59,28 @@ fun AppNavHost() {
                         popUpTo(Routes.HOME) { inclusive = true }
                     }
                 },
-                onGoPlans = { navController.navigate(Routes.PLANS) }
+                onGoPlans = { navController.navigate(Routes.PLANS) },
+                onGoAccount = { navController.navigate(Routes.ACCOUNT) }
             )
         }
         composable(Routes.PLANS) {
             PlansScreen(
                 onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Routes.ACCOUNT) {
+            AccountScreen(
+                onBack = { navController.popBackStack() },
+                onLoggedOut = {
+                    navController.navigate(Routes.ONBOARDING) {
+                        popUpTo(Routes.ACCOUNT) { inclusive = true }
+                    }
+                },
+                onDeleted = {
+                    navController.navigate(Routes.ONBOARDING) {
+                        popUpTo(Routes.ACCOUNT) { inclusive = true }
+                    }
+                }
             )
         }
     }

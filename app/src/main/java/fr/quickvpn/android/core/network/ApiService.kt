@@ -52,5 +52,23 @@ interface ApiService {
         @Body body: PlayVerifyRequest
     ): ApiEnvelope<PlayVerifyData>
 
+    @POST("api/v1/index.php")
+    suspend fun changePassword(
+        @Query("action") action: String = "account/password",
+        @Body body: ChangePasswordRequest
+    ): ApiEnvelope<ApiMessage>
+
+    @POST("api/v1/index.php")
+    suspend fun cancelSubscription(
+        @Query("action") action: String = "subscription/cancel",
+        @Body body: Any = EmptyBody
+    ): ApiEnvelope<CancelData>
+
+    @POST("api/v1/index.php")
+    suspend fun deleteAccount(
+        @Query("action") action: String = "account/delete",
+        @Body body: DeleteAccountRequest
+    ): ApiEnvelope<Any>
+
     object EmptyBody
 }

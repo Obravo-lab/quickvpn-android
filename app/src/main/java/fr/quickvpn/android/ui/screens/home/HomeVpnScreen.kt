@@ -53,6 +53,7 @@ import java.util.Locale
 fun HomeVpnScreen(
     onLoggedOut: () -> Unit,
     onGoPlans: () -> Unit,
+    onGoAccount: () -> Unit,
     vm: HomeVpnViewModel = viewModel<HomeVpnViewModel>(factory = viewModelFactory<HomeVpnViewModel>())
 ) {
     val state by vm.ui.collectAsState()
@@ -243,6 +244,10 @@ fun HomeVpnScreen(
         }
 
         Spacer(Modifier.height(32.dp))
+        OutlinedButton(onClick = onGoAccount, modifier = Modifier.fillMaxWidth().height(48.dp)) {
+            Text(stringResource(R.string.home_account))
+        }
+        Spacer(Modifier.height(8.dp))
         OutlinedButton(onClick = vm::logout, modifier = Modifier.fillMaxWidth().height(48.dp)) {
             Text(stringResource(R.string.dashboard_logout))
         }

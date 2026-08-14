@@ -6,6 +6,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import fr.quickvpn.android.AppGraph
+import fr.quickvpn.android.ui.screens.account.AccountViewModel
 import fr.quickvpn.android.ui.screens.auth.AuthViewModel
 import fr.quickvpn.android.ui.screens.home.HomeVpnViewModel
 import fr.quickvpn.android.ui.screens.plans.PlansViewModel
@@ -28,6 +29,8 @@ inline fun <reified VM : ViewModel> viewModelFactory(): ViewModelProvider.Factor
                     HomeVpnViewModel(api, api.tokenStore, app) as T
                 VM::class == PlansViewModel::class ->
                     PlansViewModel(api, api.tokenStore, app) as T
+                VM::class == AccountViewModel::class ->
+                    AccountViewModel(api, api.tokenStore, app) as T
                 else -> error("ViewModel inconnu: ${modelClass.name}")
             }
         }
