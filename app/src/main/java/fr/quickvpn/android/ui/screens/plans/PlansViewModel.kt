@@ -5,8 +5,10 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.billingclient.api.Purchase
+import com.google.gson.Gson
 import fr.quickvpn.android.core.billing.BillingManager
 import fr.quickvpn.android.core.network.ApiClient
+import fr.quickvpn.android.core.network.ApiEnvelope
 import fr.quickvpn.android.core.network.Plan
 import fr.quickvpn.android.core.network.PlayVerifyRequest
 import fr.quickvpn.android.core.network.PromoInfo
@@ -15,6 +17,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 data class PlansUiState(
     val loading: Boolean = true,
@@ -98,6 +101,13 @@ class PlansViewModel(
                 } else {
                     _ui.update { it.copy(verifying = false, error = resp.error?.message) }
                 }
+            } catch (e: HttpException) {
+                val message = runCatching {
+                    e.response()?.errorBody()?.string()?.let { raw ->
+                        Gson().fromJson(raw, ApiEnvelope::class.java)?.error?.message
+                    }
+                }.getOrNull()
+                _ui.update { it.copy(verifying = false, error = message ?: "network") }
             } catch (e: Exception) {
                 _ui.update { it.copy(verifying = false, error = "network") }
             }
