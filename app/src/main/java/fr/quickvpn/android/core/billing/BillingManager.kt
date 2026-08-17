@@ -38,7 +38,6 @@ object BillingManager : PurchasesUpdatedListener {
         if (client != null) return
         client = BillingClient.newBuilder(context)
             .setListener(this)
-            .enablePendingPurchases()
             .build()
         client!!.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(result: BillingResult) {
@@ -72,9 +71,9 @@ object BillingManager : PurchasesUpdatedListener {
                 )
             )
             .build()
-        client?.queryProductDetailsAsync(params) { result, details ->
+        client?.queryProductDetailsAsync(params) { result, queryResult ->
             if (result.responseCode == BillingClient.BillingResponseCode.OK) {
-                _state.value = _state.value.copy(products = details.orEmpty())
+                _state.value = _state.value.copy(products = queryResult.productDetailsList)
             }
         }
     }
