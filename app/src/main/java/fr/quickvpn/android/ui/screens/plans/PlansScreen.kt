@@ -31,6 +31,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.quickvpn.android.R
 import fr.quickvpn.android.core.network.Plan
 import fr.quickvpn.android.ui.navigation.viewModelFactory
+import fr.quickvpn.android.ui.theme.SurfaceFeatured
 import java.util.Locale
 
 @Composable
@@ -144,7 +145,7 @@ private fun PlanCard(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = if (featured) {
-                MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)
+                SurfaceFeatured
             } else {
                 MaterialTheme.colorScheme.surface
             }

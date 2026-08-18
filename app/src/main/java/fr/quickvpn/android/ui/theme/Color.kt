@@ -2,11 +2,12 @@ package fr.quickvpn.android.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val GreenPrimary = Color(0xFF198754)
-val GreenDark = Color(0xFF0F5C3D)
-val Background = Color(0xFF0A0A0F)
-val SurfaceDark = Color(0xFF12121A)
-val TextLight = Color(0xFFF0F0F0)
-val TextSecondary = Color(0xFF9BA1A6)
+val GreenPrimary = Color(0xFF7DCEC2)
+val GreenDark = Color(0xFF2A8F86)
+val Background = Color(0xFF082429)
+val SurfaceDark = Color(0xFF0F3A41)
+val SurfaceFeatured = Color(0xFF13464E)
+val TextLight = Color(0xFFF5F6F5)
+val TextSecondary = Color(0xFFC4CECB)
 val Danger = Color(0xFFDC3545)
 val Warning = Color(0xFFFFC107)

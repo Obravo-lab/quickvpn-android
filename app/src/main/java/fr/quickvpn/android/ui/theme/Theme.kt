@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 
 private val DarkColors = darkColorScheme(
     primary = GreenPrimary,
-    onPrimary = Color.White,
+    onPrimary = Color(0xFF082429),
     secondary = GreenDark,
     onSecondary = Color.White,
     background = Background,
@@ -18,7 +18,8 @@ private val DarkColors = darkColorScheme(
     surfaceVariant = SurfaceDark,
     onSurfaceVariant = TextSecondary,
     error = Danger,
-    onError = Color.White
+    onError = Color.White,
+    outline = Color(0x1FFFFFFF)
 )
 
 @Composable
