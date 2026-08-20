@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 val GreenPrimary = Color(0xFF7DCEC2)
 val GreenDark = Color(0xFF2A8F86)
+val CtaWhite = Color(0xFFFFFFFF)
 val Background = Color(0xFF082429)
 val SurfaceDark = Color(0xFF0F3A41)
 val SurfaceFeatured = Color(0xFF13464E)

@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -31,6 +30,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.quickvpn.android.R
 import fr.quickvpn.android.core.network.Plan
 import fr.quickvpn.android.ui.navigation.viewModelFactory
+import fr.quickvpn.android.ui.theme.CtaButton
 import fr.quickvpn.android.ui.theme.SurfaceFeatured
 import java.util.Locale
 
@@ -79,7 +79,7 @@ fun PlansScreen(
                 style = MaterialTheme.typography.titleMedium
             )
             Spacer(Modifier.height(16.dp))
-            Button(onClick = onBack, modifier = Modifier.fillMaxWidth().height(48.dp)) {
+            CtaButton(onClick = onBack, modifier = Modifier.fillMaxWidth().height(48.dp)) {
                 Text(stringResource(R.string.plans_back))
             }
             return@Column
@@ -181,7 +181,7 @@ private fun PlanCard(
                 )
             }
             Spacer(Modifier.height(12.dp))
-            Button(
+            CtaButton(
                 onClick = onSubscribe,
                 enabled = enabled,
                 modifier = Modifier.fillMaxWidth().height(44.dp)

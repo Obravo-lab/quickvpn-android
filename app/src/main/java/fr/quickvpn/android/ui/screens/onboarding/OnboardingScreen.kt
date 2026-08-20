@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -29,6 +29,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
 import fr.quickvpn.android.R
+import fr.quickvpn.android.ui.theme.CtaButton
 
 @Composable
 fun OnboardingScreen(
@@ -67,7 +68,7 @@ fun OnboardingScreen(
         FeatureRow(Icons.Filled.Info, R.string.feature_wireguard_title, R.string.feature_wireguard_desc)
 
         Spacer(Modifier.height(40.dp))
-        Button(
+        CtaButton(
             onClick = onRegister,
             modifier = Modifier.fillMaxWidth().height(52.dp)
         ) {

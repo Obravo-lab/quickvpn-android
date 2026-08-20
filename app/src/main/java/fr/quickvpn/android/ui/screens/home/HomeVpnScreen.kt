@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -47,6 +46,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.quickvpn.android.R
 import fr.quickvpn.android.ui.navigation.viewModelFactory
+import fr.quickvpn.android.ui.theme.CtaButton
 import java.util.Locale
 
 @Composable
@@ -217,7 +217,7 @@ fun HomeVpnScreen(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Spacer(Modifier.height(12.dp))
-                    Button(
+                    CtaButton(
                         onClick = onGoPlans,
                         modifier = Modifier.fillMaxWidth().height(44.dp)
                     ) {

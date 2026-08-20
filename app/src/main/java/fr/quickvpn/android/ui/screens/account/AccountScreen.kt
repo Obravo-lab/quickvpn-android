@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -32,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.quickvpn.android.R
 import fr.quickvpn.android.ui.navigation.viewModelFactory
+import fr.quickvpn.android.ui.theme.CtaButton
 
 @Composable
 fun AccountScreen(
@@ -126,7 +126,7 @@ fun AccountScreen(
                     )
                 }
                 Spacer(Modifier.height(12.dp))
-                Button(
+                CtaButton(
                     onClick = vm::changePassword,
                     enabled = !state.loading,
                     modifier = Modifier.fillMaxWidth()
