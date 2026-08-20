@@ -124,7 +124,7 @@ fun HomeVpnScreen(
 
         PowerButton(
             isUp = state.vpnUp,
-            loading = state.loading,
+            loading = state.connecting,
             onClick = {
                 if (state.vpnUp) {
                     vm.disconnect()

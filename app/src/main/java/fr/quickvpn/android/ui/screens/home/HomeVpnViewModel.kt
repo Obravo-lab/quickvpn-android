@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 
 data class HomeUiState(
     val loading: Boolean = true,
+    val connecting: Boolean = false,
     val user: User? = null,
     val vpnUp: Boolean = false,
     val vpnError: String? = null,
@@ -43,12 +44,12 @@ class HomeVpnViewModel(
         VpnManager.bind(appContext)
         viewModelScope.launch {
             VpnManager.isUp.collect { up ->
-                _ui.update { it.copy(vpnUp = up) }
+                _ui.update { it.copy(vpnUp = up, connecting = false) }
             }
         }
         viewModelScope.launch {
             VpnManager.error.collect { err ->
-                _ui.update { it.copy(vpnError = err) }
+                _ui.update { it.copy(vpnError = err, connecting = false) }
             }
         }
         viewModelScope.launch {
@@ -142,7 +143,7 @@ class HomeVpnViewModel(
     }
 
     private fun doConnect(config: String) {
-        _ui.update { it.copy(info = null) }
+        _ui.update { it.copy(info = null, connecting = true) }
         VpnManager.connect(appContext, config)
     }
 
