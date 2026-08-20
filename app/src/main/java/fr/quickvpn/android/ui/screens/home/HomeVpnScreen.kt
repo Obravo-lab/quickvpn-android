@@ -7,6 +7,7 @@ import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -46,7 +47,10 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.quickvpn.android.R
 import fr.quickvpn.android.ui.navigation.viewModelFactory
+import fr.quickvpn.android.ui.theme.Background
 import fr.quickvpn.android.ui.theme.CtaButton
+import fr.quickvpn.android.ui.theme.CtaWhite
+import fr.quickvpn.android.ui.theme.Danger
 import java.util.Locale
 
 @Composable
@@ -256,30 +260,31 @@ fun HomeVpnScreen(
 
 @Composable
 private fun PowerButton(isUp: Boolean, loading: Boolean, onClick: () -> Unit) {
-    val bg = if (isUp) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+    val bg = if (isUp) Danger else CtaWhite
+    val fg = if (isUp) Color.White else Background
+    val borderColor = if (isUp) {
+        Color(0x40DC3545)
+    } else {
+        Color(0x407DCEC2)
+    }
     Box(
         modifier = Modifier
             .size(150.dp)
+            .border(6.dp, borderColor, CircleShape)
             .background(bg, CircleShape)
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ) {
         if (loading) {
-            CircularProgressIndicator(color = Color.White)
+            CircularProgressIndicator(color = fg)
         } else {
             Text(
                 text = stringResource(if (isUp) R.string.home_disconnect else R.string.home_connect),
-                color = Color.White,
+                color = fg,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold
             )
         }
-        Box(
-            modifier = Modifier
-                .matchParentSize()
-                .padding(10.dp)
-                .background(Color.Black.copy(alpha = 0.05f), CircleShape)
-        )
     }
 }
 
