@@ -13,7 +13,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -32,6 +31,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import fr.quickvpn.android.R
 import fr.quickvpn.android.ui.navigation.viewModelFactory
 import fr.quickvpn.android.ui.theme.CtaButton
+import fr.quickvpn.android.ui.theme.CtaOutlinedButton
 
 @Composable
 fun AccountScreen(
@@ -192,7 +192,7 @@ fun AccountScreen(
                     )
                 }
                 Spacer(Modifier.height(12.dp))
-                OutlinedButton(
+                CtaOutlinedButton(
                     onClick = { showCancelDialog = true },
                     enabled = state.user?.hasVpnAccess == true && state.cancelInfo == null,
                     modifier = Modifier.fillMaxWidth()
@@ -234,7 +234,7 @@ fun AccountScreen(
                     )
                 }
                 Spacer(Modifier.height(12.dp))
-                OutlinedButton(
+                CtaOutlinedButton(
                     onClick = { showDeleteDialog = true },
                     modifier = Modifier.fillMaxWidth()
                 ) {
@@ -244,11 +244,11 @@ fun AccountScreen(
         }
 
         Spacer(Modifier.height(24.dp))
-        OutlinedButton(onClick = vm::logout, modifier = Modifier.fillMaxWidth().height(44.dp)) {
+        CtaOutlinedButton(onClick = vm::logout, modifier = Modifier.fillMaxWidth().height(44.dp)) {
             Text(stringResource(R.string.dashboard_logout))
         }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onBack, modifier = Modifier.fillMaxWidth().height(44.dp)) {
+        CtaOutlinedButton(onClick = onBack, modifier = Modifier.fillMaxWidth().height(44.dp)) {
             Text(stringResource(R.string.plans_back))
         }
     }

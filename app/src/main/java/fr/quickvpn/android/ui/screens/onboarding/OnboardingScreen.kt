@@ -14,7 +14,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,6 +29,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
 import fr.quickvpn.android.R
 import fr.quickvpn.android.ui.theme.CtaButton
+import fr.quickvpn.android.ui.theme.CtaOutlinedButton
 
 @Composable
 fun OnboardingScreen(
@@ -75,7 +75,7 @@ fun OnboardingScreen(
             Text(stringResource(R.string.onboarding_cta))
         }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(
+        CtaOutlinedButton(
             onClick = onLogin,
             modifier = Modifier.fillMaxWidth().height(52.dp)
         ) {
@@ -101,7 +101,8 @@ private fun FeatureRow(icon: ImageVector, titleRes: Int, descRes: Int) {
         Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Text(
                 text = stringResource(titleRes),
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
             Text(
                 text = stringResource(descRes),

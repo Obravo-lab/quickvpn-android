@@ -26,7 +26,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -49,6 +48,7 @@ import fr.quickvpn.android.R
 import fr.quickvpn.android.ui.navigation.viewModelFactory
 import fr.quickvpn.android.ui.theme.Background
 import fr.quickvpn.android.ui.theme.CtaButton
+import fr.quickvpn.android.ui.theme.CtaOutlinedButton
 import fr.quickvpn.android.ui.theme.CtaWhite
 import fr.quickvpn.android.ui.theme.Danger
 import java.util.Locale
@@ -242,17 +242,17 @@ fun HomeVpnScreen(
                 color = MaterialTheme.colorScheme.error
             )
             Spacer(Modifier.height(8.dp))
-            OutlinedButton(onClick = vm::refresh) {
+            CtaOutlinedButton(onClick = vm::refresh) {
                 Text(stringResource(R.string.dashboard_retry))
             }
         }
 
         Spacer(Modifier.height(32.dp))
-        OutlinedButton(onClick = onGoAccount, modifier = Modifier.fillMaxWidth().height(48.dp)) {
+        CtaOutlinedButton(onClick = onGoAccount, modifier = Modifier.fillMaxWidth().height(48.dp)) {
             Text(stringResource(R.string.home_account))
         }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = vm::logout, modifier = Modifier.fillMaxWidth().height(48.dp)) {
+        CtaOutlinedButton(onClick = vm::logout, modifier = Modifier.fillMaxWidth().height(48.dp)) {
             Text(stringResource(R.string.dashboard_logout))
         }
     }

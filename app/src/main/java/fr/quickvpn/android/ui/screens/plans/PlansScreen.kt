@@ -16,7 +16,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -31,6 +30,7 @@ import fr.quickvpn.android.R
 import fr.quickvpn.android.core.network.Plan
 import fr.quickvpn.android.ui.navigation.viewModelFactory
 import fr.quickvpn.android.ui.theme.CtaButton
+import fr.quickvpn.android.ui.theme.CtaOutlinedButton
 import fr.quickvpn.android.ui.theme.SurfaceFeatured
 import java.util.Locale
 
@@ -126,7 +126,7 @@ fun PlansScreen(
         }
 
         Spacer(Modifier.height(24.dp))
-        OutlinedButton(onClick = onBack, modifier = Modifier.fillMaxWidth()) {
+        CtaOutlinedButton(onClick = onBack, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(R.string.plans_back))
         }
     }
