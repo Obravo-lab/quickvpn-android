@@ -30,6 +30,7 @@ import androidx.compose.material.icons.filled.Lock
 import fr.quickvpn.android.R
 import fr.quickvpn.android.ui.theme.CtaButton
 import fr.quickvpn.android.ui.theme.CtaOutlinedButton
+import fr.quickvpn.android.ui.theme.TextLight
 
 @Composable
 fun OnboardingScreen(
@@ -46,7 +47,8 @@ fun OnboardingScreen(
         Spacer(Modifier.height(32.dp))
         Text(
             text = stringResource(R.string.onboarding_title),
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
+            color = TextLight
         )
         Text(
             text = stringResource(R.string.onboarding_subtitle),

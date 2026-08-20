@@ -51,6 +51,7 @@ import fr.quickvpn.android.ui.theme.CtaButton
 import fr.quickvpn.android.ui.theme.CtaOutlinedButton
 import fr.quickvpn.android.ui.theme.CtaWhite
 import fr.quickvpn.android.ui.theme.Danger
+import fr.quickvpn.android.ui.theme.TextLight
 import java.util.Locale
 
 @Composable
@@ -146,7 +147,8 @@ fun HomeVpnScreen(
             text = stringResource(
                 if (state.vpnUp) R.string.home_connected else R.string.home_disconnected
             ),
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            color = TextLight
         )
         Text(
             text = stringResource(R.string.home_server),

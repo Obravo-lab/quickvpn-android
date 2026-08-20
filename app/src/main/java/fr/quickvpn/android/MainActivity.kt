@@ -4,10 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.Modifier
 import fr.quickvpn.android.core.network.ApiClient
 import fr.quickvpn.android.ui.navigation.AppNavHost
 import fr.quickvpn.android.ui.navigation.LocalApplication
@@ -31,7 +35,13 @@ class MainActivity : ComponentActivity() {
                     AppGraph.ApiClient provides apiClient,
                     LocalApplication provides app
                 ) {
-                    AppNavHost()
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background,
+                        contentColor = MaterialTheme.colorScheme.onBackground
+                    ) {
+                        AppNavHost()
+                    }
                 }
             }
         }
