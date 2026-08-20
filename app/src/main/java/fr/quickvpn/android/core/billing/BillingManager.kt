@@ -90,7 +90,11 @@ object BillingManager : PurchasesUpdatedListener {
     fun purchase(activity: Activity, plan: String) {
         val product = _state.value.products.firstOrNull {
             it.productId == if (plan == "yearly") PRODUCT_YEARLY else PRODUCT_MONTHLY
-        } ?: return
+        }
+        if (product == null) {
+            _state.value = _state.value.copy(error = "billing_unavailable")
+            return
+        }
         val offerToken = product.subscriptionOfferDetails?.firstOrNull()?.offerToken
         val paramsBuilder = BillingFlowParams.newBuilder()
         val productParams = BillingFlowParams.ProductDetailsParams.newBuilder()
@@ -99,7 +103,18 @@ object BillingManager : PurchasesUpdatedListener {
             productParams.setOfferToken(offerToken)
         }
         paramsBuilder.setProductDetailsParamsList(listOf(productParams.build()))
-        client?.launchBillingFlow(activity, paramsBuilder.build())
+        try {
+            val billingClient = client ?: run {
+                _state.value = _state.value.copy(error = "billing_unavailable")
+                return
+            }
+            val result = billingClient.launchBillingFlow(activity, paramsBuilder.build())
+            if (result.responseCode != BillingClient.BillingResponseCode.OK) {
+                _state.value = _state.value.copy(error = "billing_error")
+            }
+        } catch (e: Exception) {
+            _state.value = _state.value.copy(error = "billing_unavailable")
+        }
     }
 
     override fun onPurchasesUpdated(result: BillingResult, purchases: MutableList<Purchase>?) {

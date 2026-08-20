@@ -88,7 +88,7 @@ fun PlansScreen(
         state.error?.let {
             Spacer(Modifier.height(12.dp))
             Text(
-                text = if (it == "network") stringResource(R.string.error_network) else it,
+                text = billingErrorText(it),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodyMedium
             )
@@ -190,6 +190,16 @@ private fun PlanCard(
             }
         }
     }
+}
+
+@Composable
+private fun billingErrorText(key: String): String = when (key) {
+    "network" -> stringResource(R.string.error_network)
+    "billing_unavailable" -> stringResource(R.string.billing_unavailable)
+    "billing_error" -> stringResource(R.string.billing_error)
+    "billing_cancelled" -> stringResource(R.string.billing_cancelled)
+    "billing_pending" -> stringResource(R.string.billing_pending)
+    else -> key
 }
 
 private fun formatPrice(plan: Plan): String {

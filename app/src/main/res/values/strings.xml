@@ -76,6 +76,10 @@
     <string name="plans_subscribe">S\'abonner</string>
     <string name="plans_subscribed">Abonnement activé ! Votre accès VPN est maintenant disponible.</string>
     <string name="plans_verify">Vérification de votre paiement…</string>
+    <string name="billing_unavailable">Achat indisponible. Installez l\'application depuis le Play Store pour vous abonner.</string>
+    <string name="billing_error">Une erreur est survenue lors de l\'achat. Réessayez.</string>
+    <string name="billing_cancelled">Achat annulé.</string>
+    <string name="billing_pending">Paiement en attente de validation.</string>
     <string name="plans_back">Retour</string>
 
     <string name="home_account">Mon compte</string>
