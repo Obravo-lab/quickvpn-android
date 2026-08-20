@@ -46,11 +46,15 @@ fun authFieldColors(): TextFieldColors {
     return OutlinedTextFieldDefaults.colors(
         focusedTextColor = AuthText,
         unfocusedTextColor = AuthText,
+        focusedContainerColor = Color.White,
+        unfocusedContainerColor = Color.White,
         focusedBorderColor = AuthPrimary,
         unfocusedBorderColor = AuthBorder,
         cursorColor = AuthPrimary,
         focusedLabelColor = AuthMuted,
-        unfocusedLabelColor = AuthMuted
+        unfocusedLabelColor = AuthMuted,
+        focusedPlaceholderColor = AuthMuted,
+        unfocusedPlaceholderColor = AuthMuted
     )
 }
 
