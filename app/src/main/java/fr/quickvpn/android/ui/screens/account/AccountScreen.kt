@@ -1,22 +1,18 @@
 package fr.quickvpn.android.ui.screens.account
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -63,23 +59,12 @@ fun AccountScreen(
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
+            .navigationBarsPadding()
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            IconButton(onClick = onBack) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = stringResource(R.string.plans_back),
-                    tint = MaterialTheme.colorScheme.onBackground
-                )
-            }
-            Text(
-                text = stringResource(R.string.account_title),
-                style = MaterialTheme.typography.titleLarge
-            )
-        }
+        Text(
+            text = stringResource(R.string.account_title),
+            style = MaterialTheme.typography.titleLarge
+        )
         state.user?.let {
             Text(
                 text = it.email,
@@ -263,6 +248,10 @@ fun AccountScreen(
         Spacer(Modifier.height(24.dp))
         CtaOutlinedButton(onClick = vm::logout, modifier = Modifier.fillMaxWidth().height(44.dp)) {
             Text(stringResource(R.string.dashboard_logout))
+        }
+        Spacer(Modifier.height(8.dp))
+        CtaOutlinedButton(onClick = onBack, modifier = Modifier.fillMaxWidth().height(44.dp)) {
+            Text(stringResource(R.string.plans_back))
         }
     }
 
